@@ -41,7 +41,11 @@
                                     <img class="w-[250px] rounded-md"
                                         src="{{ asset('storage/photos/' . $post->image) }}" />
                                 </td>
-                                <td class="px-6 py-4 text-right text-sm">Edit Delete</td>
+                                <td class="px-6 py-4 text-right text-sm">
+                                    <x-jet-button wire:click="showEditPostModal({{ $post->id }})">Edit
+                                    </x-jet-button>
+                                    <x-jet-button>Delete</x-jet-button>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -66,7 +70,12 @@
                     </div>
                     <div class="sm:col-span-6 mt-2">
                         <div class="w-full m-2 p-2">
+                            @if ($newImage)
+                                Post Photo:
+                                <img src="{{ asset('storage/photos/' . $newImage) }}" alt="">
+                            @endif
                             @if ($image)
+                                Photo Preview:
                                 <img src="{{ $image->temporaryUrl() }}" alt="">
                             @endif
                         </div>
@@ -87,7 +96,11 @@
             </div>
         </x-slot>
         <x-slot name="footer">
-            <x-jet-button wire:click="storePost">Store</x-jet-button>
+            @if ($postId)
+                <x-jet-button wire:click="updatePost">Update</x-jet-button>
+            @else
+                <x-jet-button wire:click="storePost">Store</x-jet-button>
+            @endif
         </x-slot>
     </x-jet-dialog-modal>
 </div>
