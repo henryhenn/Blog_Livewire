@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Livewire\Posts;
+use App\Http\Livewire\PostShow;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\TextUI\XmlConfiguration\Group;
 
@@ -36,3 +37,5 @@ Route::group([
 ], function () {
     Route::get('posts', Posts::class)->name('post.index');
 });
+
+Route::get('posts/{slug}', PostShow::class)->name('posts.show');

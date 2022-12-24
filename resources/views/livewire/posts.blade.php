@@ -1,6 +1,8 @@
 <div class="container mx-auto mt-2">
+    <x-jet-banner />
+
     <div class="flex content-center m-2 p-2">
-        <x-jet-button wire:click="showCreatePostModal">Create Post</x-jet-button>
+        <x-jet-button wire:click="showCreatePostModal" class="bg-green-500">Create Post</x-jet-button>
     </div>
 
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -42,9 +44,9 @@
                                         src="{{ asset('storage/photos/' . $post->image) }}" />
                                 </td>
                                 <td class="px-6 py-4 text-right text-sm">
-                                    <x-jet-button wire:click="showEditPostModal({{ $post->id }})">Edit
+                                    <x-jet-button class="bg-yellow-500" wire:click="showEditPostModal({{ $post->id }})">Edit
                                     </x-jet-button>
-                                    <x-jet-button wire:click="deletePost({{ $post->id }})">Delete</x-jet-button>
+                                    <x-jet-button class="bg-red-500" wire:click="deletePost({{ $post->id }})">Delete</x-jet-button>
                                 </td>
                             </tr>
                         @endforeach

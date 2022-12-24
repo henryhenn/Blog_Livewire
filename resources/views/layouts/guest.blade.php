@@ -18,7 +18,7 @@
 <body>
     <x-navbar></x-navbar>
 
-    <div class="font-sans text-gray-900 antialiased">
+    <div class="font-sans text-gray-900 antialiased dark:bg-gray-700 min-h-screen">
         {{ $slot }}
     </div>
 </body>

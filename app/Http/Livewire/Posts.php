@@ -75,7 +75,7 @@ class Posts extends Component
         if ($this->image) {
             Storage::delete('public/storage/photos' . $this->newImage);
             $this->newImage = $this->image->getClientOriginalName();
-            $this->image->storeAs('public/photos/', $this->newImage);
+        $this->image->storeAs('public/photos/', $this->newImage);
         }
 
         Post::find($this->postId)->update([
@@ -85,6 +85,8 @@ class Posts extends Component
         ]);
 
         $this->reset();
+
+        session()->flash('flash.banner', 'Post has been updated!');
     }
 
     public function deletePost($id)
@@ -92,6 +94,8 @@ class Posts extends Component
         $post = Post::find($id);
         Storage::delete('public/storage/photos/' . $post->image);
         $post->delete();
+
+        session()->flash('flash.banner', 'Post has been deleted!');
     }
 
     public function render()
