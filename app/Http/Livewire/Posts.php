@@ -37,10 +37,14 @@ class Posts extends Component
         $post->active = true;
         $post->image = $image_name;
         $post->save();
+
+        $this->reset();
     }
 
     public function render()
     {
-        return view('livewire.posts');
+        return view('livewire.posts', [
+            'posts' => Post::all(),
+        ]);
     }
 }

@@ -26,16 +26,24 @@
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
                         <tr></tr>
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">id</td>
-                            <td class="px-6 py-4 whitespace-nowrap">title</td>
-                            <td class="px-6 py-4 whitespace-nowrap">Active</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <img class="w-8 h-8 rounded-full" src="https://picsum.photos/200" />
-                            </td>
-                            <td class="px-6 py-4 text-right text-sm">Edit Delete</td>
-                        </tr>
-                        <!-- More items... -->
+                        @foreach ($posts as $post)
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">{{ $post->id }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap">{{ $post->title }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    @if ($post->active)
+                                        Active
+                                    @else
+                                        Not Active
+                                    @endif
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <img class="w-[250px] rounded-md"
+                                        src="{{ asset('storage/photos/' . $post->image) }}" />
+                                </td>
+                                <td class="px-6 py-4 text-right text-sm">Edit Delete</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
                 <div class="m-2 p-2">Pagination</div>
@@ -56,7 +64,12 @@
                                 class="block w-full transition duration-150 ease-in-out appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                         </div>
                     </div>
-                    <div class="sm:col-span-6 mt-4">
+                    <div class="sm:col-span-6 mt-2">
+                        <div class="w-full m-2 p-2">
+                            @if ($image)
+                                <img src="{{ $image->temporaryUrl() }}" alt="">
+                            @endif
+                        </div>
                         <label for="title" class="block text-sm font-medium text-gray-700"> Post Image </label>
                         <div class="mt-1">
                             <input type="file" id="image" wire:model="image" name="image"
