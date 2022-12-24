@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Livewire\Posts;
 use Illuminate\Support\Facades\Route;
+use PHPUnit\TextUI\XmlConfiguration\Group;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +28,11 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+});
+
+Route::group([
+    'middleware' => ['auth:sanctum', 'role:admin'],
+    'prefix' => 'admin'
+], function () {
+    Route::get('posts', Posts::class)->name('post.index');
 });
