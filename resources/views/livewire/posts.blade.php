@@ -21,7 +21,7 @@
                             <th scope="col"
                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
                                 Image</th>
-                            <th scope="col" class="relative px-6 py-3">Edit</th>
+                            <th scope="col" class="relative px-6 py-3">Actions</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
@@ -44,13 +44,15 @@
                                 <td class="px-6 py-4 text-right text-sm">
                                     <x-jet-button wire:click="showEditPostModal({{ $post->id }})">Edit
                                     </x-jet-button>
-                                    <x-jet-button>Delete</x-jet-button>
+                                    <x-jet-button wire:click="deletePost({{ $post->id }})">Delete</x-jet-button>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-                <div class="m-2 p-2">Pagination</div>
+                <div class="m-2 p-2">
+                    {{ $posts->links() }}
+                </div>
             </div>
         </div>
     </div>
